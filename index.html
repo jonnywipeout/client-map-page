@@ -32,11 +32,12 @@
     }
 
     header {
-      background-color: #111;
-      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 1rem 2rem;
-      border-bottom: 2px solid #16a34a;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0 0 12px 12px;
     }
 
     header h1 {
@@ -48,7 +49,7 @@
     .project-info {
       font-size: 0.95rem;
       line-height: 1.5;
-      color: #ddd;
+      color: #eee;
     }
 
     #map {
@@ -58,10 +59,6 @@
     }
 
     @media (max-width: 768px) {
-      header {
-        padding: 1rem;
-      }
-
       header h1 {
         font-size: 1.4rem;
       }
@@ -92,7 +89,7 @@
 
   <script>
     const imageUrl = 'images/orthophoto.png';
-    const imageBounds = [[0, 0], [1500, 1500]]; // Replace with your actual image pixel size
+    const imageBounds = [[0, 0], [1500, 1500]]; // Adjust to match your image dimensions
 
     const map = L.map('map', {
       crs: L.CRS.Simple,
