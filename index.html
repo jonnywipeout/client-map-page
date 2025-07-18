@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drone on the Farm – 31 Admiral Close</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Drone on the Farm</h1>
+    <div class="project-info">
+      <p><strong>Project:</strong> 31 Admiral Close</p>
+      <p><strong>Date:</strong> 16 July 2025</p>
+      <p><strong>Location:</strong> Telford, Shropshire</p>
+      <p><strong>Map Type:</strong> 2D Orthophoto (Image Overlay)</p>
+    </div>
+  </header>
+  <main id="map"></main>
+
+  <script>
+    var map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -5,
+      maxZoom: 2,
+      zoomSnap: 0.1
+    });
+
+    var imageUrl = 'images/orthophoto.png';
+    var imageBounds = [[0,0], [1000,1000]]; // Temporary placeholder
+
+    L.imageOverlay(imageUrl, imageBounds).addTo(map);
+    map.fitBounds(imageBounds);
+  </script>
+</body>
+</html>
