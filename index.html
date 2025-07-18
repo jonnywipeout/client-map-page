@@ -4,55 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drone on the Farm – 31 Admiral Close</title>
+
+  <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style -->
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f8f8f8;
-      color: #111;
+      background-color: #111;
+      color: #fff;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
+
     header {
       background-color: #111;
       color: #fff;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #16a34a;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
+
     header h1 {
-      font-size: 1.75rem;
+      font-size: 1.8rem;
+      color: #16a34a;
       margin-bottom: 0.5rem;
     }
+
     .project-info {
       font-size: 0.95rem;
-      line-height: 1.4;
+      line-height: 1.5;
+      color: #ddd;
     }
-    main#map {
+
+    #map {
       flex-grow: 1;
-      height: 100vh;
       width: 100%;
+      height: calc(100vh - 140px);
     }
+
     @media (max-width: 768px) {
+      header {
+        padding: 1rem;
+      }
+
       header h1 {
         font-size: 1.4rem;
       }
+
       .project-info {
         font-size: 0.85rem;
       }
+
+      #map {
+        height: calc(100vh - 160px);
+      }
     }
   </style>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
+
 <body>
   <header>
     <h1>Drone on the Farm</h1>
@@ -63,12 +87,12 @@
       <p><strong>Map Type:</strong> 2D Orthophoto (Image Overlay)</p>
     </div>
   </header>
+
   <main id="map"></main>
 
   <script>
-    // Update these bounds to match the actual image dimensions (pixels or geo bounds if using CRS.Simple)
     const imageUrl = 'images/orthophoto.png';
-    const imageBounds = [[0, 0], [1500, 1500]]; // Adjust to fit your image
+    const imageBounds = [[0, 0], [1500, 1500]]; // Replace with your actual image pixel size
 
     const map = L.map('map', {
       crs: L.CRS.Simple,
@@ -76,7 +100,7 @@
       maxZoom: 4,
       zoomSnap: 0.1,
       zoomDelta: 0.2,
-      wheelPxPerZoomLevel: 60,
+      wheelPxPerZoomLevel: 60
     });
 
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
