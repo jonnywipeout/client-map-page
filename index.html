@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drone on the Farm – 31 Admiral Close</title>
+  <title>31 Admiral Close – 2D Map</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Leaflet CSS -->
+  <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -24,7 +24,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f0f0f0;
+      background-color: #f8f8f8;
       color: #111;
       display: flex;
       flex-direction: column;
@@ -32,84 +32,86 @@
     }
 
     header {
+      position: relative;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      padding: 0.9rem 1rem;
+      justify-content: space-between;
+      padding: 0.8rem 1.5rem;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      border-radius: 0 0 10px 10px;
       z-index: 1000;
-      position: relative;
     }
 
-    .header-left, .header-center, .header-right {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.5rem;
+    .header-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #16a34a;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .header-link,
+    .download-link {
+      font-size: 1.05rem;
       font-weight: 600;
       color: #16a34a;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-    }
-
-    .header-left a, .header-right a {
       text-decoration: none;
-      color: #16a34a;
-      transition: color 0.2s ease;
+      transition: opacity 0.2s ease;
     }
 
-    .header-left a:hover, .header-right a:hover {
-      color: #128d3f;
-      text-decoration: underline;
+    .header-link:hover,
+    .download-link:hover {
+      opacity: 0.8;
     }
 
     .project-info {
-      margin: 0.8rem auto 0.5rem;
+      text-align: center;
       font-size: 0.95rem;
-      line-height: 1.4;
-      max-width: 900px;
-      padding: 0 1rem;
-      text-align: left;
+      line-height: 1.5;
+      background: #f3f3f3;
+      padding: 1rem;
+      box-shadow: inset 0 -1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .project-info p {
+      margin-bottom: 0.3rem;
     }
 
     main#map {
       flex-grow: 1;
-      height: calc(100vh - 160px);
+      height: calc(100vh - 180px);
       width: 100%;
     }
 
-    @media (max-width: 768px) {
-      .header-left, .header-center, .header-right {
-        width: 100%;
-        text-align: center;
-        font-size: 1.2rem;
-        margin-bottom: 0.4rem;
-      }
-
-      .project-info {
-        font-size: 0.85rem;
-        padding: 0 1.2rem;
-      }
-    }
-
+    /* Remove zoom buttons */
     .leaflet-control-zoom {
       display: none;
     }
+
+    @media (max-width: 768px) {
+      .header-title {
+        font-size: 1.1rem;
+      }
+      .header-link,
+      .download-link {
+        font-size: 0.95rem;
+      }
+      .project-info {
+        font-size: 0.85rem;
+        padding: 0.75rem;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
-    <div class="header-left">
-      <a href="https://www.droneonthefarm.co.uk">Drone on the Farm</a>
-    </div>
-    <div class="header-center">
-      31 Admiral Close 2D Map
-    </div>
-    <div class="header-right">
-      <a href="images/orthophoto.png" download>Download Map</a>
-    </div>
+    <a href="https://www.droneonthefarm.co.uk" class="header-link">Drone on the Farm</a>
+    <div class="header-title">31 Admiral Close 2D Map</div>
+    <a href="images/orthophoto.png" class="download-link" download>Download Map</a>
   </header>
 
   <div class="project-info">
