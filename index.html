@@ -32,64 +32,46 @@
     }
 
     header {
-      position: relative;
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      padding: 1rem 1rem 0.7rem;
+      padding: 0.8rem 1rem 0.6rem;
       border-radius: 0 0 10px 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    .back-link {
-      position: absolute;
-      top: 0.9rem;
-      left: 1rem;
+    .header-left,
+    .header-center,
+    .header-right {
       font-family: 'Pacifico', cursive;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       color: #16a34a;
+    }
+
+    .header-left a,
+    .header-right a {
       text-decoration: none;
+      color: #16a34a;
     }
 
-    .back-link:hover {
-      opacity: 0.8;
-    }
-
-    header h1 {
-      text-align: center;
-      font-size: 1.6rem;
-      font-family: 'Inter', sans-serif;
-      color: #111;
-      font-weight: 700;
+    .header-right a:hover {
+      text-decoration: underline;
     }
 
     .project-info {
-      margin-top: 0.6rem;
+      margin-top: 0.4rem;
       font-size: 0.95rem;
       line-height: 1.4;
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
       text-align: left;
-    }
-
-    .download-btn {
-      position: absolute;
-      top: 0.8rem;
-      right: 1rem;
-      font-size: 0.9rem;
-      background-color: #16a34a;
-      color: #fff;
-      text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 5px;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
-    }
-
-    .download-btn:hover {
-      background-color: #15803d;
+      font-family: 'Inter', sans-serif;
     }
 
     main#map {
@@ -99,16 +81,17 @@
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.3rem;
+      .header-left,
+      .header-center,
+      .header-right {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.4rem;
       }
       .project-info {
         font-size: 0.85rem;
         padding: 0 1rem;
-      }
-      .download-btn {
-        font-size: 0.8rem;
-        padding: 5px 10px;
       }
     }
 
@@ -119,15 +102,22 @@
 </head>
 <body>
   <header>
-    <a href="https://www.droneonthefarm.co.uk" class="back-link">Drone on the Farm</a>
-    <h1>31 Admiral Close 2D Map</h1>
-    <a href="images/orthophoto.png" download class="download-btn">Download Map</a>
-    <div class="project-info">
-      <p><strong>Project:</strong> Residential property mapping</p>
-      <p><strong>Date:</strong> 16 July 2025</p>
-      <p><strong>Location:</strong> TF1 6BJ, Apley, Telford, Shropshire</p>
+    <div class="header-left">
+      <a href="https://www.droneonthefarm.co.uk">Drone on the Farm</a>
+    </div>
+    <div class="header-center">
+      31 Admiral Close 2D Map
+    </div>
+    <div class="header-right">
+      <a href="images/orthophoto.png" download>Download Map</a>
     </div>
   </header>
+
+  <div class="project-info">
+    <p><strong>Project:</strong> Residential property mapping</p>
+    <p><strong>Date:</strong> 16 July 2025</p>
+    <p><strong>Location:</strong> TF1 6BJ, Apley, Telford, Shropshire</p>
+  </div>
 
   <main id="map"></main>
 
