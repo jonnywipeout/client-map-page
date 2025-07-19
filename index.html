@@ -21,6 +21,7 @@
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #f0f0f0;
@@ -35,7 +36,7 @@
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      padding: 1.1rem 1rem 0.8rem;
+      padding: 1rem 1rem 0.7rem;
       border-radius: 0 0 10px 10px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       z-index: 1000;
@@ -57,9 +58,16 @@
 
     header h1 {
       text-align: center;
-      font-size: 1.6rem;
+      font-size: 1.9rem;
+      font-family: 'Pacifico', cursive;
       color: #16a34a;
-      font-weight: 700;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(8px);
+      border-radius: 8px;
+      display: inline-block;
+      margin: 0 auto;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     .project-info {
@@ -71,6 +79,24 @@
       margin-right: auto;
     }
 
+    .download-btn {
+      position: absolute;
+      top: 0.8rem;
+      right: 1rem;
+      font-size: 0.9rem;
+      background-color: #16a34a;
+      color: #fff;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #15803d;
+    }
+
     main#map {
       flex-grow: 1;
       height: calc(100vh - 120px);
@@ -79,15 +105,18 @@
 
     @media (max-width: 768px) {
       header h1 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
       }
       .project-info {
         font-size: 0.85rem;
         padding: 0 1rem;
       }
+      .download-btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+      }
     }
 
-    /* Remove zoom buttons */
     .leaflet-control-zoom {
       display: none;
     }
@@ -96,12 +125,12 @@
 <body>
   <header>
     <a href="https://www.droneonthefarm.co.uk" class="back-link">Drone on the Farm</a>
-    <h1>31 Admiral close 2D map</h1>
+    <h1>31 Admiral Close 2D Map</h1>
+    <a href="images/orthophoto.png" download class="download-btn">Download Map</a>
     <div class="project-info">
-      <p><strong>Project:</strong> Residential property mapping </p>
+      <p><strong>Project:</strong> Residential property mapping</p>
       <p><strong>Date:</strong> 16 July 2025</p>
       <p><strong>Location:</strong> TF1 6BJ, Apley, Telford, Shropshire</p>
-     
     </div>
   </header>
 
@@ -118,11 +147,11 @@
       zoomSnap: 0.1,
       zoomDelta: 0.2,
       wheelPxPerZoomLevel: 60,
-      zoomControl: false // removes zoom buttons
+      zoomControl: false
     });
 
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
-    map.setView([750, 750], 0.5); // Zoomed-in default
+    map.setView([750, 750], 0.5);
   </script>
 </body>
 </html>
