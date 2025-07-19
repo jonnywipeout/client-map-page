@@ -9,7 +9,158 @@
   <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
 
   <!-- Fonts -->
+  <link href="https:<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>31 Admiral Close – 2D Map</title>
+  <meta name="description" content="Interactive 2D orthophoto map of 31 Admiral Close, Telford – Residential drone mapping project by Drone on the Farm.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8f8f8;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      animation: fadeIn 0.6s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1.2rem;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      border-radius: 0 0 10px 10px;
+      z-index: 1000;
+    }
+
+    .header-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #16a34a;
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .sub-info {
+      display: block;
+      font-size: 0.75rem;
+      color: #555;
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+
+    .header-link,
+    .download-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #16a34a;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .header-link:hover,
+    .download-link:hover {
+      opacity: 0.8;
+    }
+
+    main#map {
+      flex-grow: 1;
+      height: calc(100vh - 80px);
+      width: 100%;
+    }
+
+    .leaflet-control-zoom {
+      display: none;
+    }
+
+    /* Mobile refinement */
+    @media (max-width: 500px) {
+      header {
+        flex-direction: column;
+        gap: 0.4rem;
+        text-align: center;
+        padding: 0.8rem 1rem;
+      }
+
+      .header-title {
+        flex-grow: 0;
+        font-size: 1rem;
+      }
+
+      .header-link,
+      .download-link {
+        font-size: 0.85rem;
+      }
+
+      .sub-info {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="https://www.droneonthefarm.co.uk" class="header-link">Drone on the Farm</a>
+    <div class="header-title">
+      31 Admiral Close – 2D Map
+      <span class="sub-info">16 July 2025 – TF1 6BJ</span>
+    </div>
+    <a href="images/orthophoto.png" class="download-link" download>Download Map</a>
+  </header>
+
+  <main id="map"></main>
+
+  <script>
+    const imageUrl = 'images/orthophoto.png';
+    const imageBounds = [[0, 0], [1500, 1500]];
+
+    const map = L.map('map', {
+      crs: L.CRS.Simple,
+      minZoom: -5,
+      maxZoom: 4,
+      zoomSnap: 0.1,
+      zoomDelta: 0.2,
+      wheelPxPerZoomLevel: 60,
+      zoomControl: false
+    });
+
+    L.imageOverlay(imageUrl, imageBounds).addTo(map);
+    map.setView([750, 750], 0.5);
+  </script>
+</body>
+</html>
+//fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
