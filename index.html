@@ -32,88 +32,65 @@
     }
 
     header {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 0.8rem 1rem 0.6rem;
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-      z-index: 1000;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      opacity: 0;
-      transform: translateY(-10px);
-      animation: fadeSlideDown 0.6s ease-out forwards;
+      padding: 0.9rem 1rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+      z-index: 1000;
+      position: relative;
     }
 
-    @keyframes fadeSlideDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .header-left {
-      font-family: 'Pacifico', cursive;
-      font-size: 1.5rem;
-      color: #16a34a;
-    }
-
-    .header-left a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .header-center,
-    .header-right {
+    .header-left, .header-center, .header-right {
       font-family: 'Inter', sans-serif;
       font-size: 1.5rem;
       font-weight: 600;
       color: #16a34a;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     }
 
-    .header-right a {
+    .header-left a, .header-right a {
       text-decoration: none;
       color: #16a34a;
       transition: color 0.2s ease;
     }
 
-    .header-right a:hover {
+    .header-left a:hover, .header-right a:hover {
       color: #128d3f;
       text-decoration: underline;
     }
 
     .project-info {
-      margin-top: 0.4rem;
+      margin: 0.8rem auto 0.5rem;
       font-size: 0.95rem;
       line-height: 1.4;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 0 1rem;
       text-align: left;
     }
 
     main#map {
       flex-grow: 1;
-      height: calc(100vh - 120px);
+      height: calc(100vh - 160px);
       width: 100%;
     }
 
     @media (max-width: 768px) {
-      .header-left,
-      .header-center,
-      .header-right {
-        font-size: 1.2rem;
+      .header-left, .header-center, .header-right {
         width: 100%;
         text-align: center;
+        font-size: 1.2rem;
         margin-bottom: 0.4rem;
       }
+
       .project-info {
         font-size: 0.85rem;
-        padding: 0 1rem;
+        padding: 0 1.2rem;
       }
     }
 
@@ -128,7 +105,7 @@
       <a href="https://www.droneonthefarm.co.uk">Drone on the Farm</a>
     </div>
     <div class="header-center">
-      31 Admiral Close 
+      31 Admiral Close 2D Map
     </div>
     <div class="header-right">
       <a href="images/orthophoto.png" download>Download Map</a>
@@ -136,9 +113,9 @@
   </header>
 
   <div class="project-info">
-    <p><strong>Project:</strong> Residential property 2D map</p>
+    <p><strong>Project:</strong> Residential property mapping</p>
     <p><strong>Date:</strong> 16 July 2025</p>
-    <p><strong>Location:</strong>  Apley, Telford, Shropshire</p>
+    <p><strong>Location:</strong> TF1 6BJ, Apley, Telford, Shropshire</p>
   </div>
 
   <main id="map"></main>
