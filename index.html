@@ -4,19 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drone on the Farm – 31 Admiral Close</title>
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f8f8f8;
+      background-color: #f0f0f0;
       color: #111;
       display: flex;
       flex-direction: column;
@@ -24,89 +31,72 @@
     }
 
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.1rem 1rem 0.8rem;
+      border-radius: 0 0 10px 10px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      padding: 0.8rem 1.5rem;
       z-index: 1000;
-      transition: transform 0.3s ease;
     }
 
-    header.collapsed {
-      transform: translateY(-100%);
-    }
-
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
+    .back-link {
+      position: absolute;
+      top: 0.8rem;
+      left: 1rem;
+      font-family: 'Pacifico', cursive;
+      font-size: 1.3rem;
       color: #16a34a;
-      text-align: center;
-      margin: 0 auto;
-    }
-
-    .website-link {
-      font-size: 0.8rem;
       text-decoration: none;
+    }
+
+    .back-link:hover {
+      opacity: 0.8;
+    }
+
+    header h1 {
+      text-align: center;
+      font-size: 1.6rem;
       color: #16a34a;
-      opacity: 0.75;
+      font-weight: 700;
     }
 
     .project-info {
+      margin-top: 0.6rem;
       font-size: 0.95rem;
-      line-height: 1.5;
-      margin-top: 0.5rem;
-      color: #111;
+      line-height: 1.4;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     main#map {
       flex-grow: 1;
-      height: 100vh;
+      height: calc(100vh - 120px);
       width: 100%;
     }
 
-    .download-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #16a34a;
-      color: #fff;
-      padding: 0.5rem 0.9rem;
-      font-size: 0.85rem;
-      border-radius: 6px;
-      text-decoration: none;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
-    }
-
     @media (max-width: 768px) {
-      .logo {
-        font-size: 1.25rem;
+      header h1 {
+        font-size: 1.3rem;
       }
-
       .project-info {
         font-size: 0.85rem;
+        padding: 0 1rem;
       }
     }
-  </style>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-</head>
 
+    /* Remove zoom buttons */
+    .leaflet-control-zoom {
+      display: none;
+    }
+  </style>
+</head>
 <body>
-  <header id="header">
-    <div class="top-bar">
-      <a href="https://droneonthefarm.co.uk" class="website-link" target="_blank">Back to Website</a>
-      <div class="logo">www.droneonthefarm.co.uk</div>
-    </div>
+  <header>
+    <a href="https://www.droneonthefarm.co.uk" class="back-link">Drone on the Farm</a>
+    <h1>Drone on the Farm</h1>
     <div class="project-info">
       <p><strong>Project:</strong> 31 Admiral Close</p>
       <p><strong>Date:</strong> 16 July 2025</p>
@@ -116,8 +106,6 @@
   </header>
 
   <main id="map"></main>
-
-  <a class="download-btn" href="images/orthophoto.png" download="31admiralclose_2dmap.png">⬇ Download Map</a>
 
   <script>
     const imageUrl = 'images/orthophoto.png';
@@ -130,26 +118,11 @@
       zoomSnap: 0.1,
       zoomDelta: 0.2,
       wheelPxPerZoomLevel: 60,
-      zoomControl: false // ← This line removes the + / - zoom buttons
+      zoomControl: false // removes zoom buttons
     });
 
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
-    map.fitBounds(imageBounds);
-    map.setZoom(map.getZoom() + 1.2);
-
-    // Collapse header on scroll
-    let lastScrollTop = 0;
-    const header = document.getElementById('header');
-
-    window.addEventListener('scroll', () => {
-      const st = window.pageYOffset || document.documentElement.scrollTop;
-      if (st > lastScrollTop) {
-        header.classList.add('collapsed');
-      } else {
-        header.classList.remove('collapsed');
-      }
-      lastScrollTop = st <= 0 ? 0 : st;
-    }, false);
+    map.setView([750, 750], 0.5); // Zoomed-in default
   </script>
 </body>
 </html>
