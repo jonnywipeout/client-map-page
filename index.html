@@ -120,9 +120,8 @@
   <a class="download-btn" href="images/orthophoto.png" download="31admiralclose_2dmap.png">⬇ Download Map</a>
 
   <script>
-    // Initialize Leaflet map
     const imageUrl = 'images/orthophoto.png';
-    const imageBounds = [[0, 0], [1500, 1500]]; // Adjust to your actual image size
+    const imageBounds = [[0, 0], [1500, 1500]];
 
     const map = L.map('map', {
       crs: L.CRS.Simple,
@@ -131,11 +130,12 @@
       zoomSnap: 0.1,
       zoomDelta: 0.2,
       wheelPxPerZoomLevel: 60,
+      zoomControl: false // ← This line removes the + / - zoom buttons
     });
 
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
     map.fitBounds(imageBounds);
-    map.setZoom(map.getZoom() + 1.2); // preload slightly more zoomed in
+    map.setZoom(map.getZoom() + 1.2);
 
     // Collapse header on scroll
     let lastScrollTop = 0;
