@@ -4,8 +4,7 @@
   <!-- ========== META & TITLE ========== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>2D Orthophoto Map – 31 Admiral Close, Telford | Drone on the Farm</title>
-
+  <title>2D Orthophoto Map – 31 Admiral Close, Telford | Drone on the Farm</title>
   <meta name="description" content="Interactive 2D orthophoto map of 31 Admiral Close, Telford – Residential drone mapping project by Drone on the Farm.">
 
   <!-- ========== FAVICON ========== -->
@@ -27,7 +26,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', sans-serif, system-ui, -apple-system;
       background-color: #f8f8f8;
       color: #111;
       display: flex;
@@ -70,6 +69,11 @@
       color: #bbb;
       font-weight: 400;
       margin-top: 0.2rem;
+    }
+
+    .sub-info:last-child {
+      color: #999;
+      font-style: italic;
     }
 
     .header-link {
@@ -149,10 +153,11 @@
 <body>
   <!-- ========== HEADER SECTION ========== -->
   <header>
-   <a href="https://www.droneonthefarm.co.uk" class="header-link" target="_blank" rel="noopener noreferrer">Drone on the Farm</a>
+    <a href="https://www.droneonthefarm.co.uk" class="header-link" target="_blank" rel="noopener noreferrer">Drone on the Farm</a>
     <div class="header-title">
       2D Map - 31 Admiral Close
       <span class="sub-info">16th July 2025 - TF1 6BJ</span>
+      <span class="sub-info">Interactive 2D orthophoto map – Residential drone mapping project by Drone on the Farm.</span>
     </div>
   </header>
 
@@ -160,7 +165,7 @@
   <main id="map"></main>
 
   <!-- ========== DOWNLOAD BUTTON ========== -->
-  <a href="images/orthophoto.png" class="download-floating" download>Download Map</a>
+  <a href="images/orthophoto.png" class="download-floating" download aria-label="Download orthophoto map of 31 Admiral Close">Download Map</a>
 
   <!-- ========== SCRIPT ========== -->
   <script>
@@ -178,7 +183,7 @@
     });
 
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
-    map.setView([750, 750], 0.5);
+    map.fitBounds(imageBounds);
   </script>
 </body>
 </html>
