@@ -183,7 +183,9 @@
     });
 
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
-    map.fitBounds(imageBounds);
+    map.fitBounds(imageBounds, {
+      padding: [20, 20]
+    });
   </script>
 </body>
 </html>
