@@ -168,24 +168,24 @@
   <a href="images/orthophoto.png" class="download-floating" download aria-label="Download orthophoto map of 31 Admiral Close">Download Map</a>
 
   <!-- ========== SCRIPT ========== -->
-  <script>
-    const imageUrl = 'images/orthophoto.png';
-    const imageBounds = [[0, 0], [1500, 1500]];
+ <!-- ========== SCRIPT ========== -->
+<script>
+  const imageUrl = 'images/orthophoto.png';
+  const imageBounds = [[0, 0], [1500, 1500]];
 
-    const map = L.map('map', {
-      crs: L.CRS.Simple,
-      minZoom: -5,
-      maxZoom: 4,
-      zoomSnap: 0.1,
-      zoomDelta: 0.2,
-      wheelPxPerZoomLevel: 60,
-      zoomControl: false
-    });
+  const map = L.map('map', {
+    crs: L.CRS.Simple,
+    minZoom: -5,
+    maxZoom: 4,
+    zoomSnap: 0.1,
+    zoomDelta: 0.2,
+    wheelPxPerZoomLevel: 60,
+    zoomControl: false
+  });
 
-    L.imageOverlay(imageUrl, imageBounds).addTo(map);
-    map.fitBounds(imageBounds, {
-      padding: [20, 20]
-    });
-  </script>
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+  map.setView([750, 750], 1.65); // Center and zoom manually
+</script>
+
 </body>
 </html>
